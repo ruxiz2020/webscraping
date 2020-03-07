@@ -7,3 +7,7 @@ This module is meant to scrap web page to clean articles via:
 2. for each url extract clean text articles;
 3. archive articles by keywords into database;
 ```
+
+References:
+
+* ["googlesearch"]("https://github.com/MarioVilas/googlesearch")

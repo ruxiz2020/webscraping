@@ -2,6 +2,8 @@ import requests
 import base64
 from bs4 import BeautifulSoup
 from langdetect import detect
+from url_extract import gen_url
+from s3writer import s3writer
 
 
 def decode_foreign_text(string):
@@ -45,10 +47,14 @@ def decode_paragraph(list_sentences):
 if __name__=="__main__":
 
     #URL = "https://www.bbc.com/news/science-environment-51761833"
-    URL = "https://news.sina.com.cn/c/2020-03-05/doc-iimxyqvz7921464.shtml"
+    #URL = "https://news.sina.com.cn/c/2020-03-05/doc-iimxyqvz7921464.shtml"
+    URLs = gen_url(keyword="狂犬病", num=30)
 
-    list_text = extract_text_from_html(URL)
-    #for ss in list_text:
-    #    print(u(ss).encode('utf-8'))
-    #list_text = decode_paragraph(list_text)
+    print(len(URLs))
+    print(URLs)
+
+    for url in URLs:
+        text = extract_text_from_html(url)
+        
+        s3writer(json_data, s3filename, bucket='breakingpet1.s3.us-west-1.aws.com')
     print(list_text)
